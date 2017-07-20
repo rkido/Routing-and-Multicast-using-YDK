@@ -8,7 +8,7 @@ eigrpSHA256key = 'xYb92kksv3B0P'
 #Create a class for all CSR Nodes
 class Node():
     def __init__(self, mgmtip, loopback0, stub, rp, msdp_peer=None,
-                 netconfport=830, username='{{CHANGE TO YOUR USERNAME', password='{{CHANGE TO YOUR PASSWORD}}'):
+                 netconfport=830, username='{{CHANGE TO YOUR USERNAME}}', password='{{CHANGE TO YOUR PASSWORD}}'):
         self.mgmtip = mgmtip
         self.loopback0 = loopback0
         self.stub = stub
