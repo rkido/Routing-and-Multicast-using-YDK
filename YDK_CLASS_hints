@@ -1,0 +1,17 @@
+ ---
+            #THIS IS A PRESENCE CLASS
+            iplist.eigrp.stub = Cisco_IOS_XE_native.Native.Router.Eigrp.Eigrp_.Stub()
+
+            #THIS IS AN EMPTY CLASS
+            iplist.eigrp.stub.connected = Empty()
+
+            #THIS IS SETTING AN ENUM
+            newloopbacklist.ip.pim.sparse_mode = Cisco_IOS_XE_native.Native.Interface.Loopback.Ip.Pim.SparseModeEnum.sparse_mode
+
+
+            #This is how you READ a Leaf
+            from ydk.types import READ
+            a = ysanity.A()
+            a.a1 = READ()
+            a_read = crud.read(ncc, a)
+            print codec.encode(codec_provider, a_read)

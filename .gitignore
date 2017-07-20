@@ -1,0 +1,13 @@
+.DS_Store
+.Python
+.idea/
+bin/
+etc/
+include/
+lib/
+nodes.pyc
+pip-selfcheck.json
+scratchpaper.py
+share/
+netmodel.pyc
+funcs.pyc
