@@ -1,5 +1,5 @@
+img/
 .ipynb_checkpoints/
-*.ipynb
 .DS_Store
 .Python
 .idea/
