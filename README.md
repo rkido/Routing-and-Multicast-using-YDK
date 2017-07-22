@@ -18,7 +18,7 @@
   ```
   csr1000v-1(config)#netconf-yang
   ```
-* 
+ 
 ## Installation
 
 Follow the instructions to install YDK (these scripts were tested with YDK 0.5.5)
