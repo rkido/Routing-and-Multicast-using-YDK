@@ -38,10 +38,9 @@ if __name__ == "__main__":
         obj.ip.multicast_routing.distributed = Empty()
         obj.ip.multicast_routing._is_presence = True
         # Sort the l3intlist so they are grouped by interface type
-        strl3intlist = [x.encode('UTF8') for x in l3intlist]
-        strl3intlist.sort(key=str.lower)
+        l3intlist.sort(key=str.lower)
         # Make the l3intlist all lowercase
-        lowerl3intlist = map(lambda x: x.lower(), strl3intlist)
+        lowerl3intlist = map(lambda x: x.lower(), l3intlist)
         # Add PIM Sparse to all interfaces of l3intlist
         for ints in lowerl3intlist:
             interfacetype = ''.join(i for i in ints if not i.isdigit())
@@ -101,17 +100,16 @@ if __name__ == "__main__":
         xmls = codec.encode(provider, nativereaddata)
         # Convert Read Interface Data to Dictionary and parse for L3 Interface List
         returneddict = xmltodict.parse(xmls)
-        xmllist = returneddict['interface'].keys()
+        xmllist = list(returneddict['interface'].keys())
         xmlmoddedlist = xmllist[1:]
-        strxmlmoddedlist = [x.encode('UTF8') for x in xmlmoddedlist]
         l3intlist = []
         # Interate over Interfaces to create a list of L3 interfaces
-        for inttype in strxmlmoddedlist:
+        for inttype in xmlmoddedlist:
             for intlist in returneddict['interface'][inttype]:
-                if type(intlist) is unicode:
+                if type(intlist) is str:
                     if inttype.capitalize() + returneddict['interface'][inttype]['name'] not in l3intlist:
                         if intlist == 'name':
-                            strval = inttype.capitalize() + returneddict['interface'][inttype]['name'].encode('ascii')
+                            strval = inttype.capitalize() + returneddict['interface'][inttype]['name']
                             l3intlist.append(strval)
                         else:
                             pass

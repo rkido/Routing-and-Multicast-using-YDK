@@ -5,10 +5,12 @@ eigrpName = 'production'
 eigrpNetwork = '10.0.0.0'
 eigrpNetmask = '0.0.255.255'
 eigrpSHA256key = 'xYb92kksv3B0P'
+loopbackNetwork = '192.168.0.0'
+loopbackNetmask = '0.0.0.255'
 #Create a class for all CSR Nodes
 class Node():
     def __init__(self, mgmtip, loopback0, stub, rp, msdp_peer=None,
-                 netconfport=830, username='{{CHANGE TO YOUR USERNAME}}', password='{{CHANGE TO YOUR PASSWORD}}'):
+                 netconfport=830, username='cisco', password='cisco'):
         self.mgmtip = mgmtip
         self.loopback0 = loopback0
         self.stub = stub

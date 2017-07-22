@@ -58,8 +58,12 @@ if __name__ == "__main__":
         netlist = x.AddressFamily.AfIpList.Network()
         netlist.number = netmodel.eigrpNetwork
         netlist.wild_card = netmodel.eigrpNetmask
+        netlist2 = x.AddressFamily.AfIpList.Network()
+        netlist2.number = netmodel.loopbackNetwork
+        netlist2.wild_card = netmodel.loopbackNetmask
         iplist.af_interface.append(aflist)
         iplist.network.append(netlist)
+        iplist.network.append(netlist2)
         addconfig.af_ip_list.append(iplist)
         x.address_family.append(addconfig)
 

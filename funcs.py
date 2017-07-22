@@ -25,7 +25,7 @@ def intobjectselector(inttype):
         else:
             raise NameError
     except NameError:
-        print 'inttype did not match a valid YDK Interface type'
+        print ('inttype did not match a valid YDK Interface type')
 
 def nameSelector(fullInterface):
     try:
@@ -52,4 +52,4 @@ def nameSelector(fullInterface):
         else:
             raise NameError
     except NameError:
-        print 'inttype did not match a valid YDK Interface type'
+        print ('inttype did not match a valid YDK Interface type')

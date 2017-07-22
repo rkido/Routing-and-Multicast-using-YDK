@@ -34,6 +34,6 @@ if __name__ == "__main__":
     provider = CodecServiceProvider(type="xml")
     codec = CodecService()
     xmls = codec.encode(provider, nativedata)
-    print xmls
+    print (xmls)
 
     connection.close()
