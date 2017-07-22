@@ -12,6 +12,7 @@
 
 
 ## Configuration Pre-reqs
+* Python3
 * IOS-XE 16.5(1) devices
 * Mgmt address reachability but otherwise no routing setup
 * NETCONF/YANG is setup on these devices
