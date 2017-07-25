@@ -2,11 +2,10 @@ anycastrpaddr = '10.0.100.1'
 anycastrpmask = '255.255.255.255'
 eigrpAS = 25
 eigrpName = 'production'
-eigrpNetwork = '10.0.0.0'
+eigrpNetworks = {'10.0.0.0':'0.0.255.255','192.168.0.0':'0.0.0.255'}
 eigrpNetmask = '0.0.255.255'
 eigrpSHA256key = 'xYb92kksv3B0P'
-loopbackNetwork = '192.168.0.0'
-loopbackNetmask = '0.0.0.255'
+
 #Create a class for all CSR Nodes
 class Node():
     def __init__(self, mgmtip, loopback0, stub, rp, msdp_peer=None,

@@ -10,6 +10,7 @@ import logging
 import argparse
 import xmltodict
 from funcs import intobjectselector, nameSelector
+from collections import OrderedDict
 
 if __name__ == "__main__":
     """Execute main program."""
@@ -102,24 +103,20 @@ if __name__ == "__main__":
         returneddict = xmltodict.parse(xmls)
         xmllist = list(returneddict['interface'].keys())
         xmlmoddedlist = xmllist[1:]
-        l3intlist = []
+
         # Interate over Interfaces to create a list of L3 interfaces
-        for inttype in xmlmoddedlist:
-            for intlist in returneddict['interface'][inttype]:
-                if type(intlist) is str:
-                    if inttype.capitalize() + returneddict['interface'][inttype]['name'] not in l3intlist:
-                        if intlist == 'name':
-                            strval = inttype.capitalize() + returneddict['interface'][inttype]['name']
-                            l3intlist.append(strval)
-                        else:
-                            pass
-                    else:
-                        pass
-                else:
-                    if inttype.capitalize() + intlist['name'] not in l3intlist:
-                        l3intlist.append(inttype.capitalize() + intlist['name'])
-                    else:
-                        pass
+        rawl3intlist = [inttype.capitalize() + intlist['name'] if type(intlist) is OrderedDict else inttype.capitalize() + returneddict['interface'][inttype]['name'] if intlist == 'name' else None
+                     for inttype in xmlmoddedlist for intlist in returneddict['interface'][inttype]]
+        l3intlist = list(filter(lambda x: x != None, rawl3intlist))
+        # l3intlist = [intDictConverter(returneddict, inttype, intlist)for inttype in xmlmoddedlist for intlist in returneddict['interface'][inttype] if intDictConverter(returneddict, inttype, intlist) != None ]
+        # for inttype in xmlmoddedlist:
+        #     for intlist in returneddict['interface'][inttype]:
+        #         if type(intlist) is OrderedDict:
+        #             l3intlist.append(inttype.capitalize() + intlist['name'])
+        #         elif intlist == 'name':
+        #             l3intlist.append(inttype.capitalize() + returneddict['interface'][inttype]['name'])
+        #         else:
+        #             break
         # Apply the funtion to the object
         loopbackdata = addloopback(loopbackobject, device)
         xaddloopback = crud.create(connection, loopbackdata)

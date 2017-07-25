@@ -1,8 +1,8 @@
 
 from ydk.providers import NetconfServiceProvider
 from ydk.services import CRUDService
-from ydk.services import CodecService
-from ydk.providers import CodecServiceProvider
+#from ydk.services import CodecService
+#from ydk.providers import CodecServiceProvider
 from ydk.models.cisco_ios_xe import Cisco_IOS_XE_native
 from ydk.types import Empty
 import netmodel
@@ -55,15 +55,17 @@ if __name__ == "__main__":
             iplist.nsf = Empty()
 
         iplist.topology.base = Cisco_IOS_XE_native.Native.Router.Eigrp.AddressFamily.AfIpList.Topology.Base()
-        netlist = x.AddressFamily.AfIpList.Network()
-        netlist.number = netmodel.eigrpNetwork
-        netlist.wild_card = netmodel.eigrpNetmask
-        netlist2 = x.AddressFamily.AfIpList.Network()
-        netlist2.number = netmodel.loopbackNetwork
-        netlist2.wild_card = netmodel.loopbackNetmask
+
+        def netlistappender(appendto, network):
+            obj = Cisco_IOS_XE_native.Native.Router.Eigrp.AddressFamily.AfIpList.Network()
+            obj.number = network[0]
+            obj.wild_card = network[1]
+            appendto.append(obj)
+
+        for eigrpnetlist in netmodel.eigrpNetworks.items():
+            netlistappender(iplist.network, eigrpnetlist)
+
         iplist.af_interface.append(aflist)
-        iplist.network.append(netlist)
-        iplist.network.append(netlist2)
         addconfig.af_ip_list.append(iplist)
         x.address_family.append(addconfig)
 
