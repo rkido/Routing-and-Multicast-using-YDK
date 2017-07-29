@@ -108,16 +108,6 @@ if __name__ == "__main__":
         rawl3intlist = [inttype.capitalize() + intlist['name'] if type(intlist) is OrderedDict else inttype.capitalize() + returneddict['interface'][inttype]['name'] if intlist == 'name' else None
                      for inttype in xmlmoddedlist for intlist in returneddict['interface'][inttype]]
         l3intlist = list(filter(lambda x: x != None, rawl3intlist))
-        # l3intlist = [intDictConverter(returneddict, inttype, intlist)for inttype in xmlmoddedlist for intlist in returneddict['interface'][inttype] if intDictConverter(returneddict, inttype, intlist) != None ]
-        # for inttype in xmlmoddedlist:
-        #     for intlist in returneddict['interface'][inttype]:
-        #         if type(intlist) is OrderedDict:
-        #             l3intlist.append(inttype.capitalize() + intlist['name'])
-        #         elif intlist == 'name':
-        #             l3intlist.append(inttype.capitalize() + returneddict['interface'][inttype]['name'])
-        #         else:
-        #             break
-        # Apply the funtion to the object
         loopbackdata = addloopback(loopbackobject, device)
         xaddloopback = crud.create(connection, loopbackdata)
         # Apply Configuration over Connection
