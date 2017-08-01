@@ -31,24 +31,24 @@ def nameSelector(fullInterface):
     try:
         if ''.join(i for i in fullInterface if not i.isdigit()) == 'loopback':
             return int(''.join(i for i in fullInterface if not i.isalpha()))
-        elif ''.join(i for i in fullInterface if not i.isdigit()) == 'fortygigabitethernet':
-            return str(''.join(i for i in fullInterface if not i.isalpha()))
-        elif ''.join(i for i in fullInterface if not i.isdigit()) == 'gigabitethernet':
-            return str(''.join(i for i in fullInterface if not i.isalpha()))
-        elif ''.join(i for i in fullInterface if not i.isdigit()) == 'tengigabitethernet':
-            return str(''.join(i for i in fullInterface if not i.isalpha()))
+        elif fullInterface.startswith('fortygigabitethernet'):
+            return str(fullInterface.split('fortygigabitethernet')[1])
+        elif fullInterface.startswith('gigabitethernet'):
+            return str(fullInterface.split('gigabitethernet')[1])
+        elif fullInterface.startswith('tengigabitethernet'):
+            return str(fullInterface.split('tengigabitethernet')[1])
         elif ''.join(i for i in fullInterface if not i.isdigit()) == 'tunnel':
             return int(''.join(i for i in fullInterface if not i.isalpha()))
         elif ''.join(i for i in fullInterface if not i.isdigit()) == 'vlan':
             return int(''.join(i for i in fullInterface if not i.isalpha()))
-        elif ''.join(i for i in fullInterface if not i.isdigit()) == 'fastethernet':
-            return str(''.join(i for i in fullInterface if not i.isalpha()))
+        elif fullInterface.startswith('fastethernet'):
+            return str(fullInterface.split('fastethernet')[1])
         elif ''.join(i for i in fullInterface if not i.isdigit()) == 'multilink':
             return int(''.join(i for i in fullInterface if not i.isalpha()))
         elif ''.join(i for i in fullInterface if not i.isdigit()) == 'port_channel':
             return int(''.join(i for i in fullInterface if not i.isalpha()))
-        elif ''.join(i for i in fullInterface if not i.isdigit()) == 'serial':
-            return str(''.join(i for i in fullInterface if not i.isalpha()))
+        elif fullInterface.startswith('serial'):
+            return str(fullInterface.split('serial')[1])
         else:
             raise NameError
     except NameError:
